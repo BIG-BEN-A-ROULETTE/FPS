@@ -2,6 +2,7 @@
 
 [RequireComponent(typeof(PlayerMotor))] //veut dire que PlayerControler marche pas sans PlayerMotor.
 [RequireComponent(typeof(ConfigurableJoint))]
+[RequireComponent(typeof(Animator))]
 
 public class PlayerControler : MonoBehaviour
 {
@@ -23,13 +24,15 @@ public class PlayerControler : MonoBehaviour
     [SerializeField]
     private float jointMaxForce = 40f;
 
-    private PlayerMotor motor; //references
+    private PlayerMotor motor;  //Components.
     private ConfigurableJoint joint;
+    private Animator animator;
 
     private void Start()
     {
-        motor = GetComponent<PlayerMotor>();    //motor va stocker le script de Player motor et mtn on y a acces au script PLayerMotor depuis ici.
+        motor = GetComponent<PlayerMotor>();    //On recupere les components.
         joint = GetComponent<ConfigurableJoint>();
+        animator = GetComponent<Animator>();
         SetJointSettings(jointSpring);
     }
 
@@ -37,13 +40,17 @@ public class PlayerControler : MonoBehaviour
     {
         //Calculer la velociter des mouvement de notre joueurs.
 
-        float xMov = Input.GetAxisRaw("Horizontal");    //configurer de base pour un clavier qwerty donc changement a faire directement dans Unity.
-        float zMov = Input.GetAxisRaw("Vertical");
+        float xMov = Input.GetAxis("Horizontal");    //configurer de base pour un clavier qwerty donc changement a faire directement dans Unity.
+        float zMov = Input.GetAxis("Vertical");
 
         Vector3 moveHorizontal = transform.right * xMov;    //on transfome les input en valeur sur les axes(on precise les axes pour Unity).
         Vector3 moveVertical = transform.forward * zMov;
 
-        Vector3 velocity = (moveHorizontal + moveVertical).normalized * speed;  //on regrouppe et recuêre la velocite du joueur.
+        Vector3 velocity = (moveHorizontal + moveVertical) * speed;  //on regrouppe et recuêre la velocite du joueur.
+
+        //jouer animation thruster.
+        animator.SetFloat("ForwardVelocity", zMov);
+
 
         motor.Move(velocity);   //on apllique velocity a notre personnage.
 

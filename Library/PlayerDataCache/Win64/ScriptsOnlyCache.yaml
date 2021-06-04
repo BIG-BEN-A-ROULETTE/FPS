@@ -18,6 +18,15 @@ ScriptsOnlyBuild:
     - kcp2k.KcpTransport
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
+    UnityEditor.Graphs.dll:
+    - UnityEditor.Graphs.AnimationBlendTree.Graph
+    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationBlendTree.Node
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
+    - UnityEditor.Graphs.AnimationStateMachine.Graph
+    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
+    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -48,40 +57,46 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 65
       Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 89
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11356}
+      Script: {instanceID: 11348}
     - Class: 114
-      Script: {instanceID: 11408}
+      Script: {instanceID: 11400}
     - Class: 114
-      Script: {instanceID: 11446}
+      Script: {instanceID: 11438}
     - Class: 114
-      Script: {instanceID: 11532}
+      Script: {instanceID: 11524}
     - Class: 114
-      Script: {instanceID: 11536}
+      Script: {instanceID: 11528}
     - Class: 114
-      Script: {instanceID: 12194}
+      Script: {instanceID: 12186}
     - Class: 114
-      Script: {instanceID: 12416}
+      Script: {instanceID: 12406}
     - Class: 114
-      Script: {instanceID: 12884}
+      Script: {instanceID: 12874}
     - Class: 114
-      Script: {instanceID: 13220}
+      Script: {instanceID: 13208}
     - Class: 114
-      Script: {instanceID: 13402}
+      Script: {instanceID: 13388}
     - Class: 114
-      Script: {instanceID: 13540}
+      Script: {instanceID: 13526}
     - Class: 114
-      Script: {instanceID: 13636}
+      Script: {instanceID: 13622}
     - Class: 114
-      Script: {instanceID: 13724}
+      Script: {instanceID: 13710}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 135
@@ -1082,4 +1097,4 @@ ScriptsOnlyBuild:
   platform: 19
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/User/fps-mirror/FPS MIRROR (1)/Build/FPS MIRROR.exe
+  playerPath: C:/Users/PC_Janne/Documents/GitHub/FPS/Build/FPS MIRROR.exe
