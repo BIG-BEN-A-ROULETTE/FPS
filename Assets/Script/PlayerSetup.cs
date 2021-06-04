@@ -7,7 +7,17 @@ public class PlayerSetup : NetworkBehaviour //car on utilise mirror pour le mult
     Behaviour[] componentsToDisable;
 
     [SerializeField]
-    private string remoteLayerName = "RemotePlayer";
+    private string remoteLayerName = "RemotePlayer";    //ce sont des layer a manipuler;
+
+    [SerializeField]
+    private string dontDrawLayerName = "DontDraw";
+
+    [SerializeField]
+    private GameObject playerGraphics;
+
+    [SerializeField]
+    private GameObject playerUIPrefab;
+    private GameObject playerUIInstance;
 
     Camera sceneCamera;
 
@@ -26,9 +36,25 @@ public class PlayerSetup : NetworkBehaviour //car on utilise mirror pour le mult
             {
                 sceneCamera.gameObject.SetActive(false);
             }
+
+            //Desactiver la partie graphique du joueur.
+            SetLayerRecursively(playerGraphics, LayerMask.NameToLayer(dontDrawLayerName));
+
+            //Creation du UI du joueur local
+            playerUIInstance = Instantiate(playerUIPrefab);
         }
 
         GetComponent<Player>().Setup();
+    }
+
+    private void SetLayerRecursively(GameObject obj, int newLayer)
+    {
+        obj.layer = newLayer;
+
+        foreach (Transform child in obj.transform)
+        {
+            SetLayerRecursively(child.gameObject, newLayer) ;
+        }
     }
 
     public override void OnStartClient()    //des que qqn arrive dans le serveur cette methode apprait.
@@ -58,6 +84,9 @@ public class PlayerSetup : NetworkBehaviour //car on utilise mirror pour le mult
 
     private void OnDisable()    //est lue lorsqu'un joueur quitte le serveur.
     {
+
+        Destroy(playerUIInstance);
+
         if (sceneCamera != null)
         {
             sceneCamera.gameObject.SetActive(true);
