@@ -3,7 +3,14 @@ using Mirror;
 
 public class PlayerShoot : NetworkBehaviour
 {
-    public PlayerWeapon weapon;
+    [SerializeField]
+    private PlayerWeapon weapon;
+
+    [SerializeField]
+    private GameObject weaponGFX;
+
+    [SerializeField]
+    private string weaponLayerName = "Weapon";
 
     [SerializeField]
     private Camera cam;
@@ -18,6 +25,8 @@ public class PlayerShoot : NetworkBehaviour
             Debug.LogError("Pas de camera renseigner sur le systeme de tir.");
             this.enabled = false;   //Desactive le script PlayerShoot sur le joueur.
         }
+
+        weaponGFX.layer = LayerMask.NameToLayer(weaponLayerName);
     }
 
     private void Update()

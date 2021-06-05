@@ -3,7 +3,22 @@ guid: 1cf2cac9d7e04d542a9d4434787f646d
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grip
+    second: {fileID: 2100000, guid: 7f95e29185884e04dabd332f50418dda, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Magazine
+    second: {fileID: 2100000, guid: 94804daa328d05944936da6a3d0e66e8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Main
+    second: {fileID: 2100000, guid: 95c97761c9a37b247ba1fd3e9a24a502, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -81,7 +96,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.099999994
+    globalScale: 10
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
