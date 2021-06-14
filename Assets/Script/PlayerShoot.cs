@@ -1,22 +1,17 @@
 ﻿using UnityEngine;
 using Mirror;
 
+[RequireComponent(typeof(WeaponManager))]
 public class PlayerShoot : NetworkBehaviour
 {
-    [SerializeField]
-    private PlayerWeapon weapon;
-
-    [SerializeField]
-    private GameObject weaponGFX;
-
-    [SerializeField]
-    private string weaponLayerName = "Weapon";
-
     [SerializeField]
     private Camera cam;
 
     [SerializeField]
     private LayerMask mask;
+
+    private PlayerWeapon currentWeapon;
+    private WeaponManager weaponManager;
 
     void Start()
     {
@@ -26,11 +21,14 @@ public class PlayerShoot : NetworkBehaviour
             this.enabled = false;   //Desactive le script PlayerShoot sur le joueur.
         }
 
-        weaponGFX.layer = LayerMask.NameToLayer(weaponLayerName);
+        weaponManager = GetComponent<WeaponManager>();
     }
 
     private void Update()
     {
+
+        currentWeapon = weaponManager.GetCurrentWeapon();
+
         if(Input.GetButtonDown("Fire1"))    //detection du clique gauche.
         {
             Shoot();
@@ -42,11 +40,11 @@ public class PlayerShoot : NetworkBehaviour
     {
         RaycastHit hit;
 
-        if(Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, weapon.range, mask))
+        if(Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, currentWeapon.range, mask))
         {
             if (hit.collider.tag == "Player")
             {
-                CmdPlayerShot(hit.collider.name, weapon.damage);
+                CmdPlayerShot(hit.collider.name, currentWeapon.damage);
             }
         }
     }
